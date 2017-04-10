@@ -1,0 +1,18 @@
+/*reset*/
+*{padding: 0;margin:0}
+h1,h2,h3,h4,h5{font-size: 14px;font-weight: normal}
+/*取消下划线*/
+a{text-decoration: none}
+.l{float:left}
+.r{float:right}
+.claerfloat:after{content: "";display: block;clear:both;}
+/*头部*/
+.bg{background: url(indexbg3.jpg) no-repeat;background-size:100% 100%;}
+
+.main{height: 800px;width: 400px;}
+.main form{position: relative;top:49%;left:77%;}
+.main input{width:160px;height:21px;padding-left:10px;color:#333;border:1px solid #e2e2e2;margin-bottom:20px;border-radius: 3px}
+.main .submit-btn{width: 80px;height:30px;padding:0;color:#fff;background: #09f;border-radius: 5px;box-shadow:1px 2px 2px #ccc;cursor:pointer;margin-top:15px;}
+.submit-login{width: 80px;height:30px;padding:0;color:#fff;background: #09f;border-radius: 5px;box-shadow:1px 2px 2px #ccc;cursor:pointer;margin-top:15px;}
+
+

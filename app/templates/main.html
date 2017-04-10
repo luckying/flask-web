@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>wlcome {{ user }}</title>
+</head>
+<body background="">
+<div class="search">
+    <h1 class="left"><form method="post" action="{{ url_for('main.blog') }}">
+        <input type="text" name="search" placeholder="搜索内容">
+        <input type="submit" value="提交">
+    </form></h1>
+    <h1 class="right1">
+        <a href="{{ url_for('main.write_aritle')}}">写博客</a>
+    </h1>
+    <h1 class="right2">
+        <img src="/static/usr_image.jpeg">
+    </h1>
+    <h1 class="right3">
+        <a href="{{  url_for("main.logout")}}">退出</a>
+    </h1>
+</div>
+<div class="content">
+    <div class="content-left">
+    {% for i in title %}
+        {% set idt = i.id %}
+        <h2><a href="/{{  idt}}">{{ i.title }}</a></h2>
+        <h5>{{ i.content |truncate(500)}}</h5>
+        <strong>{{ i.datetm }}</strong>
+    {% endfor %}
+    </div>
+    <div class="right">
+        <a href=""></a>
+    </div>
+</div>
+</body>
+</html>

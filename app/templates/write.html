@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>your blog {{ session.user }}</title>
+</head>
+<body>
+    <div>
+        <form action="{{ url_for("main.write_aritle") }}" method="post">
+            <input type="text" value="文章标题" name="title">
+            <input type="text" value="文章内容" name="content">
+            <input type="submit" value="提交">
+        </form>
+    </div>
+</body>
+</html>

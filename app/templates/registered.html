@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>registered</title>
+    <link href="../static/registered.css" rel="stylesheet" type="text/css">
+</head>
+<body class="bg ">
+
+    <div class="main claerfloat">
+        <form action="/registered" method="post" class="l">
+            <label>用户名:</label>
+            <input type="text" name="loginname" placeholder="user name"> <br>
+            <label>密码&nbsp;&nbsp;:</label>
+            <input type="password" name="password" placehoder="pass word"> <br>
+            <input type="submit" name="submit" class="submit-btn">
+        </form>
+        <h1>{{ hint }}</h1>
+    </div>
+
+</body>
+</html>
