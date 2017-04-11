@@ -3,6 +3,8 @@
 
 from app import db
 from datetime import datetime
+from werkzeug.security import generate_password_hash, check_password_hash
+
 
 class Role(db.Model):
     #相当于create table role(id int primary key autoincrease,
@@ -24,20 +26,27 @@ class User(db.Model):
 
     id = db.Column(db.Integer,primary_key=True)
     username = db.Column(db.String(80),unique=True)
-    passwd   = db.Column(db.String(100))
+    passwd  = db.Column(db.String(100))
 
 
     role_id = db.Column(db.Integer,db.ForeignKey("role.id"))
     article = db.relationship("Article",backref="user")
 
-    def __init__(self,username,passwd,role_id):
-        #声明字段可以直接使用数据库访问字段
-        self.username = username
-        self.passwd = passwd
-        self.role_id = role_id
+
 
     def __unicode__(self):
         return self.username
+
+    @property
+    def password(self):
+        raise AttributeError('password is not a readable attribute')
+
+    @password.setter
+    def password(self, password):
+        self.passwd = generate_password_hash(password)
+
+    def verify_password(self, password):
+        return check_password_hash(self.passwd, password)
 
 
 

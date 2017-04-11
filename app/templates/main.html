@@ -5,33 +5,49 @@
     <title>wlcome {{ user }}</title>
 </head>
 <body background="">
-<div class="search">
-    <h1 class="left"><form method="post" action="{{ url_for('main.blog') }}">
-        <input type="text" name="search" placeholder="搜索内容">
-        <input type="submit" value="提交">
-    </form></h1>
-    <h1 class="right1">
-        <a href="{{ url_for('main.write_aritle')}}">写博客</a>
-    </h1>
-    <h1 class="right2">
-        <img src="/static/usr_image.jpeg">
-    </h1>
-    <h1 class="right3">
-        <a href="{{  url_for("main.logout")}}">退出</a>
-    </h1>
-</div>
-<div class="content">
-    <div class="content-left">
-    {% for i in title %}
-        {% set idt = i.id %}
-        <h2><a href="/{{  idt}}">{{ i.title }}</a></h2>
-        <h5>{{ i.content |truncate(500)}}</h5>
-        <strong>{{ i.datetm }}</strong>
-    {% endfor %}
-    </div>
-    <div class="right">
-        <a href=""></a>
-    </div>
-</div>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="../static/main.css">
+</head>
+<body>
+	<div class="box">
+		<!-- 头部 -->
+		<div class="head clearfix">
+			<ul class="ul1">
+				<li class="on">
+					<a href="javascript:;">首页</a>
+				</li>
+				<li class="li2">
+					<form action="{{ url_for('main.blog') }}">
+						<input class="int1" type="text">
+						<input type="submit" value="搜索">
+					</form>
+				</li>
+			</ul>
+			<ul class="r ul2">
+				<li class="li1"><img src="../static/usr_image.jpeg" alt="头像"></li>
+				<li><a href="javascript:;">登录</a></li>
+				<li><a href="javascript:;">注册</a></li>
+			</ul>
+		</div>
+        <!-- 内容 -->
+        <div class="content">
+            <div class="content-left">
+        {% for i in title %}
+            {% set idt = i.id %}
+            <h2><a href="/{{  idt}}">{{ i.title }}</a></h2>
+            <h5>{{ i.content |truncate(500)}}</h5>
+            <strong>{{ i.datetm }}</strong>
+        {% endfor %}
+        </div>
+                <div class="right">
+            <a href=""></a>
+        </div>
+        </div>
+	</div>
 </body>
 </html>
+

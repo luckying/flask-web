@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 #coding:utf8
 
-from  flask import request,redirect,render_template,url_for,make_response,session
+from  flask import request,redirect,render_template,url_for,make_response,session,flash
 
 from app.main import  main
 from app.models import User,Role,Article,Comment
+
 from app import db
 
 @main.route("/",methods=["GET","POST"])
@@ -13,15 +14,27 @@ def index():
     if request.method == "POST":
         username = request.form.get("username")
         passwd  = request.form.get("password")
-        pass_url = User.query.filter_by(username=username,passwd=passwd).first()
-        if pass_url == None:
-            return redirect(url_for("main.registe"))
-        else:
-            session["user"] = username
-            #resp = make_response(render_template("main.html" ,user=username))
-            #resp.set_cookie("userid",username)
-            #return resp
-            return redirect(url_for("main.blog"))
+
+        pass_url = User.query.filter_by(username=username).first()
+        if pass_url == None :
+            flash("NO USER")
+            return render_template("registered.html")
+        try:
+            password = pass_url.verify_password(passwd)
+            if  password is False:
+                flash("PASSWORD IS WRONG")
+                return redirect(url_for("main.index"))
+            else:
+                session["user"] = username
+                # resp = make_response(render_template("main.html" ,user=username))
+                # resp.set_cookie("userid",username)
+                # return resp
+                return redirect(url_for("main.blog"))
+
+        except:
+            erromassage = "You password is wrong"
+            return render_template("erro.html")
+
     else:
         return render_template("index.html")
 
@@ -33,15 +46,18 @@ def registe():
         passwd = request.form.get("password")
         user = User.query.filter_by(username=username).first()
         if user != None:
-            resp = "THE USER HAS REGISTERED "
+            flash( "THE USER HAS REGISTERED ")
         else:
             #这里后期写个函数,做格式校检
-            new_user = User(username=username,passwd=passwd,role_id=2)
+
+            new_user = User(username=username,password=passwd,role_id=2)
+
             db.session.add(new_user)
             db.session.commit()
-            resp = """ REGISTERED SUCESS PLEASE CLICK HERE """
 
-        return  render_template("index.html",hint=resp)
+            flash('You can now login.')
+            return redirect(url_for('main.index'))
+        return  render_template("index.html")
     else:
         return render_template("registered.html")
 

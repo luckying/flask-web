@@ -1,0 +1,26 @@
+/*reset*/
+/*所有盒子内部和外部边距*/
+*{padding:0;margin:0;}
+/*块级标签*/
+h1,h2,h3,h4,h5,h6{font-size: 14px;font-weight: normal;}
+li{list-style: none}
+a{text-decoration: none;color:#333;}
+.l{float: left;}
+.r{float: right;}
+.clearfix:after{content:"";display: block;clear:both;}
+.clearfix{zoom:1;}
+/*main*/
+.box{width:1200px;margin:0 auto;}
+.head{height:60px;}
+.head li{height:60px;line-height: 60px;}
+.head .ul1 li{float: left;margin-right:20px;}
+.head .ul1 .li2 .int1{height:30px;border:1px solid #e2e2e2;padding-left:10px;box-sizing: border-box}
+.head .ul1 .li2 input[type="submit"]{width: 50px;height: 30px;border:1px solid #e2e2e2;color:#29e;vertical-align: middle;border-radius: 5px;cursor:pointer;box-shadow: 1px 2px 2px #ccc;background: #fff;}
+.head .ul1 li.on a{color:#f00;}
+.head .ul1 li:hover a{color:#f00;}
+.head a{display: block;line-height: 60px;}
+.head .ul2 li{float: left;margin-right:20px;}
+.head .ul2 li:hover a{color:#29e;}
+.head .ul2 .li1 img{width: 35px;height: 35px;border-radius: 50%;vertical-align: middle;border:1px solid #e2e2e2;padding:5px;}
+/*内容*/
+.content{}
